@@ -15,7 +15,7 @@ module.exports = {
     'prefer-destructuring': 0,
     'no-underscore-dangle': 0,
     // windows linebreaks when not in production environment
-    "linebreak-style": ["error", process.env.NODE_ENV === 'prod' ? "unix" : "windows"]
+    'linebreak-style': ['error', process.env.NODE_ENV === 'prod' ? 'unix' : 'windows'],
   },
   overrides: [
     {
