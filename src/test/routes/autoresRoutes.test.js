@@ -52,6 +52,20 @@ describe('GET em /autores', () => {
         done();
       });
   });
+
+  it('Should return a Book List', (done) => {
+    const authorId = 1;
+    chai.request(app)
+      .get(`/authors/${authorId}/books`)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('author');
+        expect(res.body).to.have.property('books');
+        expect(res.body.books).to.be.an('array');
+        done();
+      });
+  });
 });
 
 describe('POST em /autores', () => {
