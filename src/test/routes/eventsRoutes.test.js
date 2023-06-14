@@ -14,6 +14,8 @@ after(async () => {
 
 describe('GET em /events', () => {
   it('Should return a list of events', (done) => {
+    process.env.EVENT_FLAG = true;
+
     chai.request(app)
       .get('/events')
       .set('Accept', 'application/json')
@@ -23,6 +25,17 @@ describe('GET em /events', () => {
         expect(res.body[0]).to.have.property('id');
         expect(res.body[0]).to.have.property('name');
         expect(res.body[0]).to.have.property('description');
+        done();
+      });
+  });
+
+  it('Should return error 404', (done) => {
+    process.env.EVENT_FLAG = false;
+    chai.request(app)
+      .get('/events')
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
         done();
       });
   });
