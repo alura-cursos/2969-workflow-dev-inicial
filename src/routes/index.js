@@ -5,7 +5,7 @@ import editoras from './editorasRoutes.js';
 
 const routes = (app) => {
   app.route('/').get((_, res) => {
-    res.status(200).send({ titulo: 'Curso de node' });
+    res.status(200).send({ titulo: 'Curso de node (PW 2)' });
   });
 
   app.use(
