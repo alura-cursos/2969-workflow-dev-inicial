@@ -63,7 +63,7 @@ describe('GET em /autores', () => {
         expect(res.status).to.equal(200);
         expect(res.body).to.have.property('autor');
         expect(res.body).to.have.property('livros');
-        expect(res.body.livros).to.be.an('array')
+        expect(res.body.livros).to.be.an('array');
         done();
       });
   });
