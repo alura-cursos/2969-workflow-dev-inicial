@@ -12,7 +12,7 @@
     "lint": "eslint --ignore-path .gitignore .",
     "prepare-test-db": "sqlite3 ./src/test/livraria.sqlite < populate.sql",
     "drop-test-db": "rm -f ./src/test/livraria.sqlite",
-    "test:mocha": "mocha ./src/test/routes/*.test.js",
+    "test:mocha": "mocha ./src/test/routes/*.test.js --exit",
     "test:jest": "node --experimental-vm-modules node_modules/jest/bin/jest.js ./src/test/models/*.test.js --verbose",
     "test": "npm rebuild && npm run drop-test-db && export NODE_ENV=test && npm run prepare-test-db && npm run test:mocha && npm run test:jest"
   },
