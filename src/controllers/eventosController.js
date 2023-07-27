@@ -1,4 +1,4 @@
-import Evento from '../models/evento.js';
+import Evento from '../models/eventos.js';
 
 class EventosController {
   static listarEventos = async (_, res) => {
