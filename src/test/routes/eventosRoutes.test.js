@@ -13,6 +13,7 @@ after(async () => {
 });
 
 describe('GET em /eventos', () => {
+  process.env.EVENTO_FLAG = 'true';
   it('Deve retornar uma lista de eventos', (done) => {
     chai
       .request(app)
@@ -26,6 +27,18 @@ describe('GET em /eventos', () => {
         expect(res.body[0]).to.have.property('descricao');
         expect(res.body[0]).to.have.property('data');
         expect(res.body[0]).to.have.property('autor_id');
+        done();
+      });
+  });
+
+  it('Deve retornar erro 404', (done) => {
+    process.env.EVENTO_FLAG = 'false';
+    chai
+      .request(app)
+      .get('/eventos')
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
         done();
       });
   });
