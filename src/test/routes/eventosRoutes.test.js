@@ -2,19 +2,25 @@
 import { after } from 'mocha';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+// importar a lib “sinon” junto com as outras
+import sinon from 'sinon';
 import app from '../../app.js';
 import db from '../../db/dbconfig.js';
+import EventosController from '../../controllers/eventosController.js';
 
 chai.use(chaiHttp);
 const { expect } = chai;
+
+let stub;
 
 after(async () => {
   await db.destroy();
 });
 
 describe('GET em /eventos', () => {
-  process.env.EVENTO_FLAG = 'true';
+  // process.env.EVENTO_FLAG = 'true';
   it('Deve retornar uma lista de eventos', (done) => {
+    stub = sinon.stub(EventosController, 'liberarAcessoEventos').returns(true);
     chai
       .request(app)
       .get('/eventos')
@@ -32,7 +38,9 @@ describe('GET em /eventos', () => {
   });
 
   it('Deve retornar erro 404', (done) => {
-    process.env.EVENTO_FLAG = 'false';
+    // process.env.EVENTO_FLAG = 'false';
+    stub.restore();
+    stub = sinon.stub(EventosController, 'liberarAcessoEventos').returns(false);
     chai
       .request(app)
       .get('/eventos')
