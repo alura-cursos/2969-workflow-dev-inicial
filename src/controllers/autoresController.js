@@ -3,7 +3,6 @@ import Autor from '../models/autor.js';
 class AutoresController {
   static listarAutores = async (_, res) => {
     try {
-      console.log("Branch")
       const resultado = await Autor.pegarAutores();
       return res.status(200).json(resultado);
     } catch (err) {
