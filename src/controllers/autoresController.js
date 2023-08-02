@@ -3,6 +3,7 @@ import Autor from '../models/autor.js';
 class AutoresController {
   static listarAutores = async (_, res) => {
     try {
+
       const resultado = await Autor.pegarAutores();
       return res.status(200).json(resultado);
     } catch (err) {
@@ -64,6 +65,19 @@ class AutoresController {
         return res.status(404).json({ message: `Autor com id ${params.id} não encontrado` });
       }
       return res.status(200).json({ message: 'autor excluído' });
+    } catch (err) {
+      return res.status(500).json(err.message);
+    }
+  };
+
+  static listaLivrosPorAutor = async (req, res) => {
+    try {
+      const { params } = req;
+
+      const listarLivros = await Autor.listarLivrosPorAutor(params.id);
+      const autor = await Autor.pegarPeloId(params.id);
+
+      return res.status(200).json({ autor, livros: listarLivros });
     } catch (err) {
       return res.status(500).json(err.message);
     }
