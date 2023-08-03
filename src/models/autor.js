@@ -63,6 +63,12 @@ class Autor {
     const resultado = await this.criar();
     return resultado;
   }
+
+  static async listarLivrosPorAutor(idAutor) {
+    return db('livros').where({
+      autor_id: idAutor,
+    });
+  }
 }
 
 export default Autor;
