@@ -52,6 +52,20 @@ describe('GET em /autores', () => {
         done();
       });
   });
+
+  it('Deve ser possível retornar a lista de livros de um determinado autor', (done) => {
+    const autorId = 4;
+    chai.request(app)
+      .get(`/autores/${autorId}/livros`)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('autor');
+        expect(res.body).to.have.property('livros')
+        expect(res.body.livros).to.have.an('array');
+        done();
+      })
+  })
 });
 
 describe('POST em /autores', () => {
