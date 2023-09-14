@@ -1,4 +1,3 @@
-import req from 'express/lib/request.js';
 import Autor from '../models/autor.js';
 
 class AutoresController {
