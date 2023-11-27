@@ -53,9 +53,7 @@ class Livro {
 
   static async excluir(id) {
     // o del retorna a quantidade de rows deletados
-    return db('livros')
-      .where({ id })
-      .del();
+    return db('livros').where({ id }).del();
   }
 
   async salvar() {

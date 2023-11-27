@@ -13,9 +13,7 @@ describe('Testando o modelo Editora', () => {
   it('Deve instanciar uma nova editora', () => {
     const editora = new Editora(objetoEditora);
 
-    expect(editora).toEqual(
-      expect.objectContaining(objetoEditora),
-    );
+    expect(editora).toEqual(expect.objectContaining(objetoEditora));
   });
 
   it.skip('Deve salvar editora no BD', async () => {

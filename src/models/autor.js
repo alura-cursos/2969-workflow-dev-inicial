@@ -4,11 +4,7 @@ import db from '../db/dbconfig.js';
 
 class Autor {
   constructor({
-    id,
-    nome,
-    nacionalidade,
-    created_at,
-    updated_at,
+    id, nome, nacionalidade, created_at, updated_at,
   }) {
     this.id = id || null;
     this.nome = nome;
@@ -47,9 +43,7 @@ class Autor {
 
   static async excluir(id) {
     // o del retorna a quantidade de rows deletados
-    return db('autores')
-      .where({ id })
-      .del();
+    return db('autores').where({ id }).del();
   }
 
   async salvar() {
@@ -62,6 +56,10 @@ class Autor {
     }
     const resultado = await this.criar();
     return resultado;
+  }
+
+  static async pegaLivrosPorAutor(autorId) {
+    return db('livros').where({ autor_id: autorId });
   }
 }
 

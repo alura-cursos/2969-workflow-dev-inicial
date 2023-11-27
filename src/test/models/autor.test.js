@@ -12,9 +12,7 @@ describe('Testando o modelo Autor', () => {
   it('Deve instanciar um novo autor', () => {
     const autor = new Autor(objetoAutor);
 
-    expect(autor).toEqual(
-      expect.objectContaining(objetoAutor),
-    );
+    expect(autor).toEqual(expect.objectContaining(objetoAutor));
   });
 
   it.skip('Deve salvar autor no BD', async () => {
