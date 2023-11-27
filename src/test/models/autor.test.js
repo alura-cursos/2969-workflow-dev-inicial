@@ -1,6 +1,4 @@
-import {
-  describe, expect, it, jest,
-} from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 import Autor from '../../models/autor.js';
 
 describe('Testando o modelo Autor', () => {
@@ -9,12 +7,10 @@ describe('Testando o modelo Autor', () => {
     nacionalidade: 'brasileira',
   };
 
-  it('Deve instanciar um novo autor', () => {
+  it('Deve instanciar um novo autor  ', () => {
     const autor = new Autor(objetoAutor);
 
-    expect(autor).toEqual(
-      expect.objectContaining(objetoAutor),
-    );
+    expect(autor).toEqual(expect.objectContaining(objetoAutor));
   });
 
   it.skip('Deve salvar autor no BD', async () => {
@@ -30,7 +26,7 @@ describe('Testando o modelo Autor', () => {
         ...objetoAutor,
         created_at: expect.any(String),
         updated_at: expect.any(String),
-      }),
+      })
     );
   });
 
@@ -54,7 +50,7 @@ describe('Testando o modelo Autor', () => {
         ...objetoAutor,
         created_at: expect.any(String),
         updated_at: expect.any(String),
-      }),
+      })
     );
   });
 });

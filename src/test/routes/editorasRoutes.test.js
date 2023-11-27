@@ -13,7 +13,8 @@ after(async () => {
 
 describe('GET em /editoras', () => {
   it('Deve retornar uma lista de editoras', (done) => {
-    chai.request(app)
+    chai
+      .request(app)
       .get('/editoras')
       .set('Accept', 'application/json')
       .end((err, res) => {
@@ -28,7 +29,8 @@ describe('GET em /editoras', () => {
 
   it('Deve retornar uma editora', (done) => {
     const idEditora = 1;
-    chai.request(app)
+    chai
+      .request(app)
       .get(`/editoras/${idEditora}`)
       .set('Accept', 'application/json')
       .end((err, res) => {
@@ -43,12 +45,14 @@ describe('GET em /editoras', () => {
 
   it('Não deve retornar uma editora com id inválido', (done) => {
     const idEditora = 'A';
-    chai.request(app)
+    chai
+      .request(app)
       .get(`/editoras/${idEditora}`)
       .set('Accept', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(404);
-        expect(res.body).to.have.property('message')
+        expect(res.body)
+          .to.have.property('message')
           .eql(`id ${idEditora} não encontrado`);
         done();
       });
@@ -62,27 +66,29 @@ describe('POST em /editoras', () => {
       cidade: 'Testelândia',
       email: 'e@e.com',
     };
-    chai.request(app)
+    chai
+      .request(app)
       .post('/editoras')
       .set('Accept', 'application/json')
       .send(editora)
       .end((err, res) => {
         expect(res.status).to.equal(201);
-        expect(res.body).to.have.property('message')
-          .eql('editora criada');
+        expect(res.body).to.have.property('message').eql('editora criada');
         done();
       });
   });
 
   it('Não deve criar uma editora ao receber body vazio', (done) => {
     const editora = {};
-    chai.request(app)
+    chai
+      .request(app)
       .post('/editoras')
       .set('Accept', 'application/json')
       .send(editora)
       .end((err, res) => {
         expect(res.status).to.equal(400);
-        expect(res.body).to.have.property('message')
+        expect(res.body)
+          .to.have.property('message')
           .eql('corpo da requisição vazio');
         done();
       });
@@ -96,7 +102,8 @@ describe('PUT em /editoras', () => {
       nome: 'Editora Testada Dois',
       cidade: 'Tangamandápio',
     };
-    chai.request(app)
+    chai
+      .request(app)
       .put(`/editoras/${idEditora}`)
       .set('Accept', 'application/json')
       .send(editoraAtualizada)
@@ -115,13 +122,15 @@ describe('PUT em /editoras', () => {
     const autorAtualizado = {
       name: 'Atualizando Novamente',
     };
-    chai.request(app)
+    chai
+      .request(app)
       .put(`/editoras/${idEditora}`)
       .set('Accept', 'application/json')
       .send(autorAtualizado)
       .end((err, res) => {
         expect(res.status).to.equal(404);
-        expect(res.body).to.have.property('message')
+        expect(res.body)
+          .to.have.property('message')
           .eql(`id ${idEditora} não encontrado`);
         done();
       });
@@ -131,25 +140,27 @@ describe('PUT em /editoras', () => {
 describe('DELETE em /editoras', () => {
   it('Deve deletar uma editora', (done) => {
     const idEditora = 1;
-    chai.request(app)
+    chai
+      .request(app)
       .delete(`/editoras/${idEditora}`)
       .set('Accept', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(200);
-        expect(res.body).to.have.property('message')
-          .eql('editora excluída');
+        expect(res.body).to.have.property('message').eql('editora excluída');
         done();
       });
   });
 
   it('Não deve deletar uma editora com id inválido', (done) => {
     const idEditora = 'A';
-    chai.request(app)
+    chai
+      .request(app)
       .delete(`/editoras/${idEditora}`)
       .set('Accept', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(404);
-        expect(res.body).to.have.property('message')
+        expect(res.body)
+          .to.have.property('message')
           .eql(`Editora com id ${idEditora} não encontrada`);
         done();
       });
