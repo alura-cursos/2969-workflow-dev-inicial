@@ -3,7 +3,9 @@
 import db from '../db/dbconfig.js';
 
 class Evento {
-  constructor({ id, nome, descricao, data, autor_id, created_at, updated_at }) {
+  constructor({
+    id, nome, descricao, data, autor_id, created_at, updated_at,
+  }) {
     this.id = null || id;
     this.nome = nome;
     this.descricao = descricao;
