@@ -20,7 +20,7 @@ services:
     ports:
       - "4000:4000"
     volumes:
-      - ./:/app:cached  
+      - ./:/app
   db:
     image: postgres
     container_name: livraria_db
