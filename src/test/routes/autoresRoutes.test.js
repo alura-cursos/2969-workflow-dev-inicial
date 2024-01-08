@@ -66,6 +66,20 @@ describe('GET em /autores', () => {
         done();
       });
   });
+
+  it('Deve retornar uma lista de autores vazia', (done) => {
+    const idAutor = 4;
+    chai.request(app)
+      .get(`autores/${idAutor}/livros`)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('autor');
+        expect(res.body).to.have.property('livros');
+        expect(res.body.livros).to.be.an('array').that.is.empty;
+        done();
+      });
+  });
 });
 
 describe('POST em /autores', () => {
