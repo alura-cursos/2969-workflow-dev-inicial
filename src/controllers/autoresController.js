@@ -1,4 +1,4 @@
-import Autor from '../models/autor.js';
+import Autor from "../models/autor.js";
 
 class AutoresController {
   static listarAutores = async (_, res) => {
@@ -15,10 +15,24 @@ class AutoresController {
     try {
       const resultado = await Autor.pegarPeloId(params.id);
       if (!resultado) {
-        return res.status(404).json({ message: `id ${params.id} não encontrado` });
+        return res
+          .status(404)
+          .json({ message: `id ${params.id} não encontrado` });
       }
       return res.status(200).json(resultado);
     } catch (err) {
+      return res.status(500).json(err.message);
+    }
+  };
+
+  static listarLivrosPorAutor = async (req, res) => {
+    const { params } = req;
+    try {
+      const listaLivros = await Autor.pegaLivrosPorAutor(params.id);
+      const autor = await Autor.pegarPeloId(params.id);
+
+      return res.status(200).json({ autor: autor, livors: listaLivros });
+    } catch (e) {
       return res.status(500).json(err.message);
     }
   };
@@ -28,12 +42,12 @@ class AutoresController {
     const autor = new Autor(body);
     try {
       if (Object.keys(body).length === 0) {
-        throw new Error('corpo da requisição vazio');
+        throw new Error("corpo da requisição vazio");
       }
       await autor.salvar(autor);
-      return res.status(201).json({ message: 'autor criado' });
+      return res.status(201).json({ message: "autor criado" });
     } catch (err) {
-      if (err.message === 'corpo da requisição vazio') {
+      if (err.message === "corpo da requisição vazio") {
         return res.status(400).json({ message: err.message });
       }
       return res.status(500).json(err.message);
@@ -46,11 +60,15 @@ class AutoresController {
     try {
       const autorAtual = await Autor.pegarPeloId(params.id);
       if (!autorAtual) {
-        return res.status(404).json({ message: `id ${params.id} não encontrado` });
+        return res
+          .status(404)
+          .json({ message: `id ${params.id} não encontrado` });
       }
       const novoAutor = new Autor({ ...autorAtual, ...body });
       const resposta = await novoAutor.salvar(novoAutor);
-      return res.status(200).json({ message: 'autor atualizado', content: resposta });
+      return res
+        .status(200)
+        .json({ message: "autor atualizado", content: resposta });
     } catch (err) {
       return res.status(500).json(err.message);
     }
@@ -61,9 +79,11 @@ class AutoresController {
     try {
       const autorFoiDeletado = await Autor.excluir(params.id);
       if (!autorFoiDeletado) {
-        return res.status(404).json({ message: `Autor com id ${params.id} não encontrado` });
+        return res
+          .status(404)
+          .json({ message: `Autor com id ${params.id} não encontrado` });
       }
-      return res.status(200).json({ message: 'autor excluído' });
+      return res.status(200).json({ message: "autor excluído" });
     } catch (err) {
       return res.status(500).json(err.message);
     }
