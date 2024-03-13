@@ -1,5 +1,5 @@
-import db from "../db/dbconfig.js";
-
+// import db from "../db/dbconfig.js";
+/* eslint-disable rule-name */
 class Evento {
   constructor({ id, nome, descricao, data, autor_id, created_at, updated_at }) {
     this.id = id || null;
