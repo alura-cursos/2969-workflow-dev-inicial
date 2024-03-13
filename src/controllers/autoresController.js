@@ -28,10 +28,10 @@ class AutoresController {
   static listarLivrosPorAutor = async (req, res) => {
     const { params } = req;
     try {
-      const listaLivros = await Autor.pegaLivrosPorAutor(params.id);
       const autor = await Autor.pegarPeloId(params.id);
+      const listaLivros = await Autor.pegaLivrosPorAutor(params.id);
 
-      return res.status(200).json({ autor: autor, livors: listaLivros });
+      return res.status(200).json({ autor: autor, livros: listaLivros });
     } catch (err) {
       return res.status(500).json(err.message);
     }
