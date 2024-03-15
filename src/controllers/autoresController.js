@@ -73,7 +73,7 @@ class AutoresController {
     const { params } = req;
     try {
       const resultado = await Autor.pegarPeloId(params.id);
-     // adicionando a condição para retornar 404
+      // adicionando a condição para retornar 404
       if (!resultado) {
         return res.status(404).json({ message: `id ${params.id} não encontrado` });
       }
