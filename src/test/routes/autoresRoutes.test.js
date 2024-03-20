@@ -66,6 +66,18 @@ describe('GET em /autores', () => {
         done();
       });
   });
+
+  it('Não deve retornar uma lista de livros com autor', (done) => {
+    const autorId = 9998;
+    chai.request(app)
+      .get(`/autores/${autorId}/livros`)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
+        expect(res.body).to.have.property('message').eql(`ìd ${autorId} do autor não encontrado.`);
+        done();
+      });
+  });
 });
 
 describe('POST em /autores', () => {

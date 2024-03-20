@@ -75,6 +75,10 @@ class AutoresController {
       const listaDeLivros = await Autor.pegaLivrosPorAutor(id);
       const autor = await Autor.pegarPeloId(id);
 
+      if (!autor) {
+        return res.status(404).json({ message: `ìd ${id} do autor não encontrado.` });
+      }
+
       return res.status(200).json({
         autor,
         livros: listaDeLivros,
