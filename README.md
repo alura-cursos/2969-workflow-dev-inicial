@@ -95,21 +95,21 @@ O comando `sudo docker-compose up dev` já fará o processo de instalar e subir 
 ```
 Starting livraria_api_dev ... done
 Attaching to livraria_api_dev
-livraria_api_dev | 
+livraria_api_dev |
 livraria_api_dev | > api-js-local@1.0.0 dev
 livraria_api_dev | > npm run migrate && npm run seed && nodemon server.js
-livraria_api_dev | 
-livraria_api_dev | 
+livraria_api_dev |
+livraria_api_dev |
 livraria_api_dev | > api-js-local@1.0.0 migrate
 livraria_api_dev | > npx knex --knexfile=./src/db/knexfile.js migrate:latest
-livraria_api_dev | 
+livraria_api_dev |
 livraria_api_dev | Working directory changed to /app/src/db
 livraria_api_dev | Using environment: development
 livraria_api_dev | Already up to date
-livraria_api_dev | 
+livraria_api_dev |
 livraria_api_dev | > api-js-local@1.0.0 seed
 livraria_api_dev | > npx knex --knexfile=./src/db/knexfile.js seed:run
-livraria_api_dev | 
+livraria_api_dev |
 livraria_api_dev | Working directory changed to /app/src/db
 livraria_api_dev | Using environment: development
 livraria_api_dev | Ran 1 seed files
@@ -139,6 +139,7 @@ A API expõe os seguintes *endpoints* a partir da *base URL* `localhost:3000`:
 `/autores`
 * `GET /autores`
 * `GET /autores/:id`
+* `GET /autores/:id/livros`
 * `POST /autores`
 * `PUT /autores/:id`
 * `DELETE /autores/:id`
@@ -169,7 +170,7 @@ Caso deseje fazer consultas diretamente ao Postgres:
 psql (15.1 (Debian 15.1-1.pgdg110+1))
 Type "help" for help.
 
-postgres=# 
+postgres=#
 ```
 
 A partir desse momento o terminal estará pronto para receber consultas ao banco utilizando as linguagens PSQL e SQL.
