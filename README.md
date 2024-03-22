@@ -201,8 +201,21 @@ Para sair do SQLite utilize ctrl+C e para sair do terminal do container utilize 
 
 > **IMPORTANTE:** Garanta que está utilizando exatamente os mesmos nomes de arquivo e caminhos de pasta, pois o comando `sqlite3 ./caminho/arquivo.sqlite` **irá criar um novo arquivo no local, caso já não exista um com o mesmo nome**. Ou seja, nesse caso será acessado um novo arquivo, ao invés do já existente.
 
+### Utilização/Acessoi ao Unleash
+
+A conexão com a interface unleash pode ser feita pela url  `http://localhost:4242`, cuja porta 4242 consta no arquivo docker-compose do projeto. Ao acessar, o login é:
+- user: `admin`
+- senha: `unleash4all`
+
+A feature toggle a ser adicionada/criada no unleash, após login, deve ter o nome de `eventos`, sendo este utilizado na implementação do projeto em `src/controllers/eventosController.'js` e no `console.log` em `src/app.js`.
+
+### Referência
+
+Projeto originado de um treinamento realizado pela Alura, Juliana Amoasei como instrutora.
+
 ## Roadmap
 
 * Autenticação
 * Tratamento de erros
 * Validações
+
