@@ -1,0 +1,9 @@
+@baseUrl = http://localhost:3000
+
+GET {{baseUrl}}/livros
+Content-Type: application/json
+
+###
+
+GET {{baseUrl}}/autores/1/livros
+Content-Type: application/json
