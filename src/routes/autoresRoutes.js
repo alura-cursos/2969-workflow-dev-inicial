@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import express from 'express';
 import AutoresController from '../controllers/autoresController.js';
 
