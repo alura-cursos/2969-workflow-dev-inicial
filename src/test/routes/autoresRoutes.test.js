@@ -38,6 +38,20 @@ describe('GET em /autores', () => {
         expect(res.body).to.have.property('nacionalidade');
         done();
       });
+
+    it('Deve retornar uma lista de livros', () => {
+      const autorId = 1;
+      chai.request(app)
+        .get(`/autores/${autorId}/livros`)
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('autor');
+          expect(res.body).to.have.property('livros');
+          expect(res.body.livros).to.be.an('array');
+          done();
+        });
+    });
   });
 
   it('Não deve retornar um autor com id inválido', (done) => {
