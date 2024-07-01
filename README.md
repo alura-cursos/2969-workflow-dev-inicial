@@ -139,6 +139,7 @@ A API expõe os seguintes *endpoints* a partir da *base URL* `localhost:3000`:
 `/autores`
 * `GET /autores`
 * `GET /autores/:id`
+* `GET /autores/:id/livrosç`
 * `POST /autores`
 * `PUT /autores/:id`
 * `DELETE /autores/:id`
