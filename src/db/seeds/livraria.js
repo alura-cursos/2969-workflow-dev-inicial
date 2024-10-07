@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable import/prefer-default-export */
 /**
  * @param { import("knex").Knex } knex

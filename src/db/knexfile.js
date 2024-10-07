@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import path from 'path';
 import { fileURLToPath } from 'url';
 import * as dotenv from 'dotenv';
@@ -28,7 +29,7 @@ const dbConfig = {
   test: {
     client: 'sqlite3',
     connection: {
-      filename: path.join(__dirname, '../test/livraria.sqlite'),
+      filename: path.join(__dirname, 'src/db/livraria.sqlite'),
     },
     useNullAsDefault: true,
   },

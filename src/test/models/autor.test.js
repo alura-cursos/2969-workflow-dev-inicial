@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import {
   describe, expect, it, jest,
 } from '@jest/globals';

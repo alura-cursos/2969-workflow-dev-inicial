@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable camelcase */
 import db from '../db/dbconfig.js';

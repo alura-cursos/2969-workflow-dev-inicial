@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }

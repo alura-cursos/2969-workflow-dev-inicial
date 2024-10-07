@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import Livro from '../models/livro.js';
 
 class LivrosController {
