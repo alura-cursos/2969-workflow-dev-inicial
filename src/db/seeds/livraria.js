@@ -44,19 +44,19 @@ export async function seed(knex) {
       titulo: 'O Grande Livro de Node.js',
       paginas: 123,
       editora_id: 1,
-      autor_id: 1,
+      autor_id: 46,
     },
     {
       titulo: 'JavaScript Completo',
       paginas: 234,
-      editora_id: 2,
-      autor_id: 2,
+      editora_id: 1,
+      autor_id: 47,
     },
     {
       titulo: 'Tudo Sobre APIs REST',
       paginas: 345,
-      editora_id: 3,
-      autor_id: 3,
+      editora_id: 1,
+      autor_id: 48,
     },
   ]);
 }
