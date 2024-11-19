@@ -23,6 +23,20 @@ class AutoresController {
     }
   };
 
+  static listarLivrosPorAutor = async (req, res) => {
+    const { params } = req;
+        try {
+            const autor = await Autor.pegarPeloId(params.id);
+            if (!autor) {
+              return res.status(404).json({ message: `id ${params.id} não encontrado` });
+            }
+            const listaLivros = await Autor.pegaLivrosPorAutor(params.id);
+            return res.status(200).json({ autor, livros: listaLivros });
+        } catch (err) {
+      return res.status(500).json(err.message);
+        }
+  };
+
   static cadastrarAutor = async (req, res) => {
     const { body } = req;
     const autor = new Autor(body);
@@ -39,6 +53,7 @@ class AutoresController {
       return res.status(500).json(err.message);
     }
   };
+  
 
   static atualizarAutor = async (req, res) => {
     const { params } = req;
