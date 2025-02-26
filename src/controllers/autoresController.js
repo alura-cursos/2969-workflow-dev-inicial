@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import Autor from '../models/autor.js';
 
 class AutoresController {
@@ -64,6 +65,20 @@ class AutoresController {
         return res.status(404).json({ message: `Autor com id ${params.id} não encontrado` });
       }
       return res.status(200).json({ message: 'autor excluído' });
+    } catch (err) {
+      return res.status(500).json(err.message);
+    }
+  };
+
+  static listarLivrosPorAutor = async (req, res) => {
+    const { params } = req;
+    try {
+      const autor = await Autor.pegarPeloId(params.id);
+      if (!autor) {
+        return res.status(404).json({ message: `id ${params.id} não foi encontrado` });
+      }
+      const listaLivros = await Autor.pegaLivrosPorAutor(params.id);
+      return res.status(200).json({ autor, livros: listaLivros });
     } catch (err) {
       return res.status(500).json(err.message);
     }
