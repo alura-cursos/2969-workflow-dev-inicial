@@ -7,17 +7,17 @@ class Evento {
         nome,
         descricao,
         data,
-        autor_id,
-        created_at,
-        updated_at
-    }){
+        autorId,
+        createdAt,
+        updatedAt
+    }) {
         this.id = id || null;
         this.nome = nome;
         this.descricao = descricao;
         this.data = data;
-        this.autor_id = autor_id;
-        this.created_at = created_at || new Date().toISOString();
-        this.updated_at = updated_at || new Date().toISOString();
+        this.autorId = autorId;
+        this.createdAt = createdAt || new Date().toISOString();
+        this.updatedAt = updatedAt || new Date().toISOString();
     }
 
     static async pegarEventos() {
