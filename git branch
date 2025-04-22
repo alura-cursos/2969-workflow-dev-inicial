@@ -1,0 +1,201 @@
+[33mcommit 1000a0ae8ef78402fc57b073f31e0b84b873633f[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: JulianaAmoasei <late.parrot@gmail.com>
+Date:   Wed Feb 22 15:13:20 2023 -0300
+
+    feat: :tada: add: arquivos iniciais do curso
+    
+    Este commit contém os arquivos iniciais do curso de worflows para devs. Comece por aqui!
+
+[1mdiff --git a/.env b/.env[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2ec9f25[m
+[1m--- /dev/null[m
+[1m+++ b/.env[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32mDB_URL=postgresql://postgres:admin123@db/postgres[m
+\ No newline at end of file[m
+[1mdiff --git a/.eslintrc.cjs b/.eslintrc.cjs[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d151946[m
+[1m--- /dev/null[m
+[1m+++ b/.eslintrc.cjs[m
+[36m@@ -0,0 +1,28 @@[m
+[32m+[m[32mmodule.exports = {[m
+[32m+[m[32m  env: {[m
+[32m+[m[32m    browser: true,[m
+[32m+[m[32m    es2021: true,[m
+[32m+[m[32m  },[m
+[32m+[m[32m  extends: [[m
+[32m+[m[32m    'airbnb-base',[m
+[32m+[m[32m  ],[m
+[32m+[m[32m  parserOptions: {[m
+[32m+[m[32m    ecmaVersion: 'latest',[m
+[32m+[m[32m    sourceType: 'module',[m
+[32m+[m[32m  },[m
+[32m+[m[32m  rules: {[m
+[32m+[m[32m    'import/extensions': 0,[m
+[32m+[m[32m    'prefer-destructuring': 0,[m
+[32m+[m[32m    'no-underscore-dangle': 0,[m
+[32m+[m[32m  },[m
+[32m+[m[32m  overrides: [[m
+[32m+[m[32m    {[m
+[32m+[m[32m      files: [[m
+[32m+[m[32m        '*.test.js',[m
+[32m+[m[32m      ],[m
+[32m+[m[32m      env: {[m
+[32m+[m[32m        jest: true,[m
+[32m+[m[32m      },[m
+[32m+[m[32m    },[m
+[32m+[m[32m  ],[m
+[32m+[m[32m};[m
+[1mdiff --git a/.github/workflows/pre-push.yaml b/.github/workflows/pre-push.yaml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..04d335c[m
+[1m--- /dev/null[m
+[1m+++ b/.github/workflows/pre-push.yaml[m
+[36m@@ -0,0 +1,18 @@[m
+[32m+[m[32mname: pre-push[m
+[32m+[m[32mon:[m
+[32m+[m[32m  push:[m
+[32m+[m[32m    branches-ignore:[m
+[32m+[m[32m      - main[m
+[32m+[m[32mjobs:[m
+[32m+[m[32m  test:[m
+[32m+[m[32m    name: Linter[m
+[32m+[m[32m    runs-on: ubuntu-latest[m
+[32m+[m[32m    steps:[m
+[32m+[m[32m      - uses: actions/checkout@v3[m
+[32m+[m[32m      - uses: actions/setup-node@v3[m
+[32m+[m[32m        with:[m
+[32m+[m[32m          node-version: 18[m
+[32m+[m[32m      - name: Instala as dependencias[m
+[32m+[m[32m        run: npm i[m
+[32m+[m[32m      - name: Roda o linter[m
+[32m+[m[32m        run: npm run lint[m
+\ No newline at end of file[m
+[1mdiff --git a/.github/workflows/unit-tests-pr.yaml b/.github/workflows/unit-tests-pr.yaml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a150401[m
+[1m--- /dev/null[m
+[1m+++ b/.github/workflows/unit-tests-pr.yaml[m
+[36m@@ -0,0 +1,19 @@[m
+[32m+[m[32mname: testes-unitarios[m
+[32m+[m[32mon:[m
+[32m+[m[32m  pull_request:[m
+[32m+[m[32m    types: [ opened, synchronize ][m
+[32m+[m[32m    branches:[m
+[32m+[m[32m      - main[m
+[32m+[m[32mjobs:[m
+[32m+[m[32m  test:[m
+[32m+[m[32m    name: Test[m
+[32m+[m[32m    runs-on: ubuntu-latest[m
+[32m+[m[32m    steps:[m
+[32m+[m[32m      - uses: actions/checkout@v3[m
+[32m+[m[32m      - uses: actions/setup-node@v3[m
+[32m+[m[32m        with:[m
+[32m+[m[32m          node-version: 18[m
+[32m+[m[32m      - name: Instala as dependencias[m
+[32m+[m[32m        run: npm i[m
+[32m+[m[32m      - name: Roda os testes[m
+[32m+[m[32m        run: npm test[m
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mnew file mode 100644[m
+[1mindex 0000000..b512c09[m
+[1m--- /dev/null[m
+[1m+++ b/.gitignore[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32mnode_modules[m
+\ No newline at end of file[m
+[1mdiff --git a/Dockerfile b/Dockerfile[m
+[1mnew file mode 100644[m
+[1mindex 0000000..35499ec[m
+[1m--- /dev/null[m
+[1m+++ b/Dockerfile[m
+[36m@@ -0,0 +1,6 @@[m
+[32m+[m[32mFROM node:18-alpine[m
+[32m+[m[32mADD . /app[m
+[32m+[m[32mWORKDIR /app[m
+[32m+[m[32mRUN apk add --update-cache sqlite[m
+[32m+[m[32mUSER node[m
+[32m+[m[32mCMD npm install[m
+[1mdiff --git a/README.md b/README.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..104017c[m
+[1m--- /dev/null[m
+[1m+++ b/README.md[m
+[36m@@ -0,0 +1,207 @@[m
+[32m+[m[32m# API Livraria[m
+[32m+[m
+[32m+[m[32m![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN)[m
+[32m+[m
+[32m+[m[32m## Resumo do projeto[m
+[32m+[m
+[32m+[m[32mProjeto de API REST para prática de JavaScript.[m
+[32m+[m[32mLivraria com sistema de cadastro e manejo de livros, autores e editoras.[m
+[32m+[m
+[32m+[m
+[32m+[m[32m## Stack utilizada[m
+[32m+[m
+[32m+[m[32m* `Node.js` v18.10.[m
+[32m+[m[32m* `express` v4.18.1,[m
+[32m+[m[32m* `knex` v2.1.0[m
+[32m+[m[32m* `sqlite3` v5.0.8[m
+[32m+[m[32m* `postgres` v8.9.0[m
+[32m+[m
+[32m+[m
+[32m+[m[32m## Instalação[m
+[32m+[m
+[32m+[m[32mEste projeto já conta com o código necessário para subir a API em um servidor local:[m
+[32m+[m
+[32m+[m[32m```[m
+[32m+[m[32m├── .github[m
+[32m+[m[32m│   └── workflows[m
+[32m+[m[32m│       ├── pre-push.yaml[m
+[32m+[m[32m│       └── unit-tests-pr.yaml[m
+[32m+[m[32m├── src[m
+[32m+[m[32m│   ├── controllers[m
+[32m+[m[32m│   │   ├── autoresController.js[m
+[32m+[m[32m│   │   ├── editorasController.js[m
+[32m+[m[32m│   │   └── livrosController.js[m
+[32m+[m[32m│   ├── db[m
+[32m+[m[32m│   │   ├── migrations[m
+[32m+[m[32m│   │   │   └── 20230130173832_livraria.js[m
+[32m+[m[32m│   │   ├── seeds[m
+[32m+[m[32m│   │   │   └── livraria.js[m
+[32m+[m[32m│   │   ├── dbconfig.js[m
+[32m+[m[32m│   │   ├── knexfile.js[m
+[32m+[m[32m│   │   └── livraria.sqlite[m
+[32m+[m[32m│   ├── models[m
+[32m+[m[32m│   │   ├── autor.js[m
+[32m+[m[32m│   │   ├── editora.js[m
+[32m+[m[32m│   │   └── livro.js[m
+[32m+[m[32m│   ├── routes[m
+[32m+[m[32m│   │   ├── autoresRoutes.js[m
+[32m+[m[32m│   │   ├── editorasRoutes.js[m
+[32m+[m[32m│   │   ├── index.js[m
+[32m+[m[32m│   │   └── livrosRoutes.js[m
+[32m+[m[32m│   ├── test[m
+[32m+[m[32m│   │   ├── models[m
+[32m+[m[32m│   │   │   ├── autor.test.js[m
+[32m+[m[32m│   │   │   └── editora.test.js[m
+[32m+[m[32m│   │   ├── routes[m
+[32m+[m[32m│   │   │   ├── autoresRoutes.test.js[m
+[32m+[m[32m│   │   │   ├── editorasRoutes.test.js[m
+[32m+[m[32m│   │   │   └── livrosRoutes.test.js[m
+[32m+[m[32m│   │   └── livraria.sqlite[m
+[32m+[m[32m│   └── app.js[m
+[32m+[m[32m├── docker-compose.yaml[m
+[32m+[m[32m├── Dockerfile[m
+[32m+[m[32m├── .env[m
+[32m+[m[32m├── .eslintrc.cjs[m
+[32m+[m[32m├── .gitignore[m
+[32m+[m[32m├── package.json[m
+[32m+[m[32m├── package-lock.json[m
+[32m+[m[32m├── populate.sql[m
+[32m+[m[32m├── README.md[m
+[32m+[m[32m└── server.js[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32m### Instalação do projeto[m
+[32m+[m
+[32m+[m[32m> **IMPORTANTE:** Se você usa Windows como sistema operacional, recomendamos fortemente o uso do WSL (Windows Subsystem for Linux) durante o curso. Caso ainda não utilize, temos um [vídeo](https://cursos.alura.com.br/extra/alura-mais/windows-subsystem-for-linux-wsl--c238) e um [artigo](https://www.alura.com.br/artigos/wsl-executar-programas-comandos-linux-no-windows) explicando seus usos e como instalar. Siga os passos de instalação e uso antes de começar com o projeto do curso.
