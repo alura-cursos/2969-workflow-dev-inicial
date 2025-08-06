@@ -70,11 +70,14 @@ class EditorasController {
   };
 
   static listarLivrosPorEditora = async (req, res) => {
-    const { params } = req;
+    const { id } = req.params;
+
     try {
-      const resultado = await Editora.pegarPeloId(params.id);
-      const listaLivros = await Editora.pegarLivrosPorEditora(params.id);
-      return res.status(200).json({ editora: resultado[0], livros: listaLivros });
+      const livros = await Editora.pegarLivrosPorEditora(id);
+      if (!livros || livros.length === 0) {
+        return res.status(404).json({ mensagem: 'Editora não localizada ou sem livros associados.' });
+      }
+      return res.status(200).json(livros);
     } catch (err) {
       return res.status(500).json(err.message);
     }
