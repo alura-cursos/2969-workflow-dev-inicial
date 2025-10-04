@@ -9,7 +9,7 @@
     "unmigrate": "npx knex --knexfile=./src/db/knexfile.js migrate:rollback",
     "seed": "npx knex --knexfile=./src/db/knexfile.js seed:run",
     "dev": "npm install && npm run migrate && npm run seed && nodemon server.js",
-    "lint": "eslint --fix --ignore-path .gitignore .",
+    "lint": "eslint --ignore-path .gitignore .",
     "prepare-test-db": "sqlite3 ./src/test/livraria.sqlite < populate.sql",
     "drop-test-db": "rm -f ./src/test/livraria.sqlite",
     "test:mocha": "mocha ./src/test/routes/*.test.js",
@@ -23,7 +23,8 @@
     "dotenv": "16.0.3",
     "express": "4.18.1",
     "knex": "^2.1.0",
-    "pg": "8.9.0"
+    "pg": "8.9.0",
+    "unleash-client": "^3.18.0"
   },
   "devDependencies": {
     "@jest/globals": "28.1.2",
