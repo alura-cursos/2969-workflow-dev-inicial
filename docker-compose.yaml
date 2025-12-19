@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 
 services:
   dev:
@@ -20,9 +20,9 @@ services:
     ports:
       - "4000:4000"
     volumes:
-      - ./:/app:cached  
+      - ./:/app:cached
   db:
-    image: postgres
+    image: postgres:15
     container_name: livraria_db
     environment:
       - POSTGRES_USER=postgres
@@ -32,6 +32,6 @@ services:
       - "5432:5432"
     volumes:
       - database:/var/lib/postgresql/data
-  
+
 volumes:
-   database:
+  database:
