@@ -1,7 +1,7 @@
-import express from 'express';
-import EditorasController from '../controllers/editorasController.js';
+import express from 'express'
+import EditorasController from '../controllers/editorasController.js'
 
-const router = express.Router();
+const router = express.Router()
 
 router
   .get('/editoras', EditorasController.listarEditoras)
@@ -9,6 +9,6 @@ router
   .get('/editoras/:id', EditorasController.listarEditoraPorId)
   .post('/editoras', EditorasController.cadastrarEditora)
   .put('/editoras/:id', EditorasController.atualizarEditora)
-  .delete('/editoras/:id', EditorasController.excluirEditora);
+  .delete('/editoras/:id', EditorasController.excluirEditora)
 
-export default router;
+export default router
