@@ -1,6 +1,6 @@
 import Autor from '../models/autor.js'
 
-// biome-ignore lint/complexity/noStaticOnlyClass: Controller
+// biome-ignore lint/complexity/noStaticOnlyClass: Class Controller
 class AutoresController {
   static listarAutores = async (_, res) => {
     try {
