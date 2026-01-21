@@ -1,13 +1,13 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
-import * as dotenv from 'dotenv';
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import * as dotenv from 'dotenv'
 
 if (process.env.ENVIRONMENT !== 'test') {
-  dotenv.config({ path: '/app/.env' });
+  dotenv.config({ path: '/app/.env' })
 }
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const dbConfig = {
   development: {
@@ -32,6 +32,6 @@ const dbConfig = {
     },
     useNullAsDefault: true,
   },
-};
+}
 
-export default dbConfig;
+export default dbConfig

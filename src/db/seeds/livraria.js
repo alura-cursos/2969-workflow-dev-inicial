@@ -1,13 +1,12 @@
-/* eslint-disable import/prefer-default-export */
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
 export async function seed(knex) {
   // Deletes ALL existing entries
-  await knex('livros').del();
-  await knex('editoras').del();
-  await knex('autores').del();
+  await knex('livros').del()
+  await knex('editoras').del()
+  await knex('autores').del()
   await knex('autores').insert([
     {
       nome: 'K. Johnson',
@@ -21,7 +20,7 @@ export async function seed(knex) {
       nome: 'D. Vaughn',
       nacionalidade: 'Orlando',
     },
-  ]);
+  ])
   await knex('editoras').insert([
     {
       nome: 'Editora Node.js',
@@ -38,7 +37,7 @@ export async function seed(knex) {
       cidade: 'Belo Brasília',
       email: 'ed@ed.com',
     },
-  ]);
+  ])
   await knex('livros').insert([
     {
       titulo: 'O Grande Livro de Node.js',
@@ -58,7 +57,7 @@ export async function seed(knex) {
       editora_id: 3,
       autor_id: 3,
     },
-  ]);
+  ])
 }
 
 // npx knex --knexfile=./src/db/knexfile.js seed:make livraria
