@@ -1,5 +1,3 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable camelcase */
 import db from '../db/dbconfig.js'
 
 class Autor {
@@ -54,6 +52,10 @@ class Autor {
     }
     const resultado = await this.criar()
     return resultado
+  }
+
+  static async pegaLivrosPorAutor(autorId) {
+    return db('livros').where({ autor_id: autorId })
   }
 }
 
