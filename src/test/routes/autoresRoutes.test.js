@@ -53,6 +53,20 @@ describe('GET em /autores', () => {
         done()
       })
   })
+
+  it('Deve retorna uma lista de livros de um autor', done => {
+    const autorId = 1
+    chai
+      .request(app)
+      .get(`/autores/${autorId}/livros`)
+      .set('Accept', 'application/json')
+      .end((_, res) => {
+        expect(res.status).to.equal(200)
+        expect(res.body).to.have.property('autor')
+        expect(res.body.livros).to.be.an('array')
+        done()
+      })
+  })
 })
 
 describe('POST em /autores', () => {
