@@ -22,7 +22,7 @@ services:
     volumes:
       - ./:/app:cached  
   db:
-    image: postgres
+    image: postgres:15
     container_name: livraria_db
     environment:
       - POSTGRES_USER=postgres
