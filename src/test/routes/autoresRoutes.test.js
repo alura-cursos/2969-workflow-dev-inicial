@@ -52,9 +52,22 @@ describe('GET em /autores', () => {
         done();
       });
   });
+
+  it("deve retorna uma lista de livros",()=>{
+    const autorId = 1;
+    chai.request(app)
+    .get(`/autores/${autorId}/livros`)
+    .set('Accept', 'application/json')
+    .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('nome')
+          .eql(`id ${idAutor} não encontrado`);
+        done();
+      });
+  })
 });
 
-describe('POST em /autores', () => {
+describe('POST em /autores', (done) => {
   it('Deve criar um novo autor', (done) => {
     const autor = {
       nome: 'Teste Testinho',
@@ -65,9 +78,10 @@ describe('POST em /autores', () => {
       .set('Accept', 'application/json')
       .send(autor)
       .end((err, res) => {
-        expect(res.status).to.equal(201);
-        expect(res.body).to.have.property('message')
-          .eql('autor criado');
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('autor');
+        expect(res.body).to.have.property('livros');
+        expect(res.body.livros).to.be.an('array');
         done();
       });
   });
