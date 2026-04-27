@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 
 services:
   dev:
@@ -11,7 +11,11 @@ services:
     volumes:
       - ./:/app:cached
     depends_on:
-      - db
+      db:
+        condition: service_healthy # aguarda o banco estar pronto de verdade
+    networks:
+      - livraria_network
+
   test:
     build: .
     container_name: livraria_api_test
@@ -20,9 +24,15 @@ services:
     ports:
       - "4000:4000"
     volumes:
-      - ./:/app:cached  
+      - ./:/app:cached
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - livraria_network
+
   db:
-    image: postgres
+    image: postgres:16
     container_name: livraria_db
     environment:
       - POSTGRES_USER=postgres
@@ -32,6 +42,17 @@ services:
       - "5432:5432"
     volumes:
       - database:/var/lib/postgresql/data
-  
+    networks:
+      - livraria_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
 volumes:
-   database:
+  database:
+
+networks:
+  livraria_network:
+    driver: bridge

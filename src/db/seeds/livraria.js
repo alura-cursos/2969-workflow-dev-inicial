@@ -10,30 +10,36 @@ export async function seed(knex) {
   await knex('autores').del();
   await knex('autores').insert([
     {
+      id: 1,
       nome: 'K. Johnson',
       nacionalidade: 'Springfield',
     },
     {
+      id: 2,
       nome: 'A. Lovelace',
       nacionalidade: 'Paris',
     },
     {
+      id: 3,
       nome: 'D. Vaughn',
       nacionalidade: 'Orlando',
     },
   ]);
   await knex('editoras').insert([
     {
+      id: 1,
       nome: 'Editora Node.js',
       cidade: 'São Paulo',
       email: 'node@node.com',
     },
     {
+      id: 2,
       nome: 'Editora JavaScript',
       cidade: 'Rio de Janeiro',
       email: 'js@js.com',
     },
     {
+      id: 3,
       nome: 'Editora REST',
       cidade: 'Belo Brasília',
       email: 'ed@ed.com',
@@ -61,4 +67,4 @@ export async function seed(knex) {
   ]);
 }
 
-// npx knex --knexfile=./src/db/knexfile.js seed:make livraria
+// npx knex --knexfile=./src/db/knexfile.jws seed:make livraria
