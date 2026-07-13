@@ -15,7 +15,9 @@ class LivrosController {
     try {
       const resultado = await Livro.pegarPeloId(params.id);
       if (!resultado) {
-        return res.status(404).json({ message: `id ${params.id} não encontrado` });
+        return res
+          .status(404)
+          .json({ message: `id ${params.id} não encontrado` });
       }
       return res.status(200).json(resultado);
     } catch (err) {
@@ -46,11 +48,15 @@ class LivrosController {
     try {
       const livroAtual = await Livro.pegarPeloId(params.id);
       if (!livroAtual) {
-        return res.status(404).json({ message: `id ${params.id} não encontrado` });
+        return res
+          .status(404)
+          .json({ message: `id ${params.id} não encontrado` });
       }
       const novoLivro = new Livro({ ...livroAtual, ...body });
       const resposta = await novoLivro.salvar(novoLivro);
-      return res.status(200).json({ message: 'livro atualizado', content: resposta });
+      return res
+        .status(200)
+        .json({ message: 'livro atualizado', content: resposta });
     } catch (err) {
       return res.status(500).json(err.message);
     }
@@ -61,7 +67,9 @@ class LivrosController {
     try {
       const livroFoiDeletado = await Livro.excluir(params.id);
       if (!livroFoiDeletado) {
-        return res.status(404).json({ message: `Livro com id ${params.id} não encontrado` });
+        return res
+          .status(404)
+          .json({ message: `Livro com id ${params.id} não encontrado` });
       }
       return res.status(200).json({ message: 'livro excluído' });
     } catch (err) {

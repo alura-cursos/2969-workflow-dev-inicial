@@ -4,12 +4,7 @@ import db from '../db/dbconfig.js';
 
 class Editora {
   constructor({
-    id,
-    nome,
-    cidade,
-    email,
-    created_at,
-    updated_at,
+    id, nome, cidade, email, created_at, updated_at,
   }) {
     this.id = id || null;
     this.nome = nome;
@@ -50,9 +45,7 @@ class Editora {
 
   static async excluir(id) {
     // o del retorna a quantidade de rows deletados
-    return db('editoras')
-      .where({ id })
-      .del();
+    return db('editoras').where({ id }).del();
   }
 
   async salvar() {
@@ -66,8 +59,7 @@ class Editora {
   }
 
   static async pegarLivrosPorEditora(editoraId) {
-    return db('livros')
-      .where({ editora_id: editoraId });
+    return db('livros').where({ editora_id: editoraId });
   }
 }
 
