@@ -11,5 +11,4 @@ router
   .put('/autores/:id', AutoresController.atualizarAutor)
   .delete('/autores/:id', AutoresController.excluirAutor);
 
-console.log('ROTA AUTORES CARREGADA');
 export default router;
