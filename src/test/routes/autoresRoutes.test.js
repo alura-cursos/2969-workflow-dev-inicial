@@ -52,6 +52,72 @@ describe('GET em /autores', () => {
         done();
       });
   });
+  it('Deve retornar uma lista de livros', (done) => {
+    const autorId = 1;
+    chai.request(app)
+      .get(`/autores/${autorId}/livros`)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('autor');
+        expect(res.body).to.have.property('livros');
+        expect(res.body.livros).to.be.an('array');
+        done();
+      });
+  });
+
+  it('Deve retornar uma lista de livros vazia', (done) => {
+    const idAutor = 4;
+    chai.request(app)
+      .get(`/autores/${idAutor}/livros`)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('autor');
+        expect(res.body).to.have.property('livros');
+        expect(res.body.livros).to.be.an('array').that.is.empty;
+        done();
+      });
+  });
+
+  it('Nao deve retornar uma lsita de livros com autor invalido', (done) => {
+    const idAutor = 999;
+    chai.request(app)
+      .get(`/autores/${idAutor}/livros`)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
+        expect(res.body).to.have.property('message')
+          .eql(`id ${idAutor} nao encontrado`);
+        done();
+      });
+  });
+
+  it('Deve retornar um autor pelo nome quando ele existe', (done) => {
+    const nomeAutorExistente = 'Machado de Assis';
+    chai.request(app)
+      .get(`/autores/busca?nome=${nomeAutorExistente}`)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('nome').eql(nomeAutorExistente);
+        expect(res.body).to.have.property('id');
+        done();
+      });
+  });
+
+  it('Nao deve retornar um autor quando o nome nao existe', (done) => {
+    const nomeInexistente = 'Autor inexistente';
+    chai.request(app)
+      .get(`/autores/busca?nome=${nomeInexistente}`)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
+        expect(res.body).to.have.property('message')
+          .eql(`autor com o nome '${nomeInexistente}' nao encontrado`);
+        done();
+      });
+  });
 });
 
 describe('POST em /autores', () => {

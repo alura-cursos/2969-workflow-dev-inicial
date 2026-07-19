@@ -68,6 +68,33 @@ class AutoresController {
       return res.status(500).json(err.message);
     }
   };
+
+  static listarLivrosPorAutor = async (req, res) => {
+    const { params } = req;
+    try {
+      const autor = await Autor.pegarPeloId(params.id);
+      if (!autor) {
+        return res.status(404).json({ message: `id ${params.id} nao encontrado` });
+      }
+      const listaLivros = await Autor.pegaLivrosPorAutor(params.id);
+      return res.status(200).json({ autor, livros: listaLivros });
+    } catch (err) {
+      return res.status(500).json(err.message);
+    }
+  };
+
+  static listarAutorPorNome = async (req, res) => {
+    const { nome } = req.query;
+    try {
+      const autorEncontrado = await Autor.pegarPeloNome(nome);
+      if (!autorEncontrado) {
+        return res.status(404).json({ message: `autor com o nome '${nome}' nao encontrado` });
+      }
+      return res.status(200).json(autorEncontrado);
+    } catch (err) {
+      return res.status(500).json(err.message);
+    }
+  };
 }
 
 export default AutoresController;
