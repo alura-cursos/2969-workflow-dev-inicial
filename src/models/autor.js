@@ -3,13 +3,7 @@
 import db from '../db/dbconfig.js';
 
 class Autor {
-  constructor({
-    id,
-    nome,
-    nacionalidade,
-    created_at,
-    updated_at,
-  }) {
+  constructor({ id, nome, nacionalidade, created_at, updated_at }) {
     this.id = id || null;
     this.nome = nome;
     this.nacionalidade = nacionalidade;
@@ -47,9 +41,7 @@ class Autor {
 
   static async excluir(id) {
     // o del retorna a quantidade de rows deletados
-    return db('autores')
-      .where({ id })
-      .del();
+    return db('autores').where({ id }).del();
   }
 
   async salvar() {
@@ -62,6 +54,11 @@ class Autor {
     }
     const resultado = await this.criar();
     return resultado;
+  }
+
+  // Criar um metodo para buscar livros por id de autor.
+  static async pegarLivrosPorAutor(autorId) {
+    return db('livros').where({ autor_id: autorId });
   }
 }
 

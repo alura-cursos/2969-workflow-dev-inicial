@@ -15,9 +15,24 @@ class AutoresController {
     try {
       const resultado = await Autor.pegarPeloId(params.id);
       if (!resultado) {
-        return res.status(404).json({ message: `id ${params.id} não encontrado` });
+        return res
+          .status(404)
+          .json({ message: `id ${params.id} não encontrado` });
       }
       return res.status(200).json(resultado);
+    } catch (err) {
+      return res.status(500).json(err.message);
+    }
+  };
+
+  static listarLivrosPorAutor = async (req, res) => {
+    const { params } = req;
+    try {
+      const listarLivros = await Autor.pegarLivrosPorAutor(params.id);
+      const autor = await Autor.pegarPeloId(params.id);
+      return res
+        .status(200)
+        .json({ autor, livros: listarLivros, message: 'a busca realizada' });
     } catch (err) {
       return res.status(500).json(err.message);
     }
@@ -46,11 +61,15 @@ class AutoresController {
     try {
       const autorAtual = await Autor.pegarPeloId(params.id);
       if (!autorAtual) {
-        return res.status(404).json({ message: `id ${params.id} não encontrado` });
+        return res
+          .status(404)
+          .json({ message: `id ${params.id} não encontrado` });
       }
       const novoAutor = new Autor({ ...autorAtual, ...body });
       const resposta = await novoAutor.salvar(novoAutor);
-      return res.status(200).json({ message: 'autor atualizado', content: resposta });
+      return res
+        .status(200)
+        .json({ message: 'autor atualizado', content: resposta });
     } catch (err) {
       return res.status(500).json(err.message);
     }
@@ -61,7 +80,9 @@ class AutoresController {
     try {
       const autorFoiDeletado = await Autor.excluir(params.id);
       if (!autorFoiDeletado) {
-        return res.status(404).json({ message: `Autor com id ${params.id} não encontrado` });
+        return res
+          .status(404)
+          .json({ message: `Autor com id ${params.id} não encontrado` });
       }
       return res.status(200).json({ message: 'autor excluído' });
     } catch (err) {
